@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word by Word Display</title>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .image-container {
+        width: 400px;
+        height: 400px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: white;
+        margin-bottom: 10px;
+      }
+      .text-display {
+        width: 400px;
+        font-size: 18px;
+        padding: 10px;
+        border: 2px solid #333;
+        border-radius: 5px;
+        background-color: white;
+        outline: none;
+        word-wrap: break-word;
+        white-space: normal;
+        overflow-wrap: break-word;
+        resize: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="kashish world">
+      <h1>Kashish World</h1>
+    </div>
+    <div class="image-container">
+      <img
+        id="display-image"
+        src="/images/1.jpeg"
+        alt="Image"
+        width="100%"
+        height="100%"
+      />
+    </div>
+
+    <textarea id="text-display" class="text-display" readonly></textarea>
+
+    <br />
+    <br />
+
+    <button onclick="location.href='page2.html';">Go to Next Page</button>
+
+    <script>
+      const text =
+        "Kashish Parveen is a vibrant 23-year-old young woman who brings boundless energy and passion to every aspect of her life. Known for her talkative nature and endearing personality, she combines a unique blend of charm and determination. While she loves to discuss her dreams and ideas, she's still learning to transform her words into action.";
+      const words = text.split(" ");
+      let index = 0;
+      const textDisplay = document.getElementById("text-display");
+
+      function showNextWord() {
+        if (index < words.length) {
+          textDisplay.value = words.slice(0, index + 1).join(" ");
+          textDisplay.style.height = "auto";
+          textDisplay.style.height = textDisplay.scrollHeight + "px";
+          index++;
+          setTimeout(showNextWord, 500); // Adjust speed here
+        }
+      }
+
+      showNextWord();
+    </script>
+  </body>
+</html>
